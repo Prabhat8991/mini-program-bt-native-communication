@@ -1,22 +1,42 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+
+
+function handleClick() {
+  window.iOS.discovery();
+}
 
 function App() {
+
+  const [bluetoothList, setBluetoothList] = useState([]);
+
+  window.handleBluetoothData = function(data){
+        setBluetoothList(data.split('|'));
+  }
+
+  // window.event = new Event('MyEventType');
+  // window.addEventListener('MyEventType', function (evt) {
+  //   // something is performed
+  //   //console.log("####event:" + evt.detail);
+  //   setBluetoothList(evt.detail.split('|'));
+  // }, false);
+  const listItems = bluetoothList.map((item) =>
+    <li key={item.toString()}>
+      {item.toString()}
+    </li>
+  );  
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Bluetooth
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={handleClick}>
+          Connect
+        </button>
+        <ul>{listItems}</ul>
       </header>
     </div>
   );
