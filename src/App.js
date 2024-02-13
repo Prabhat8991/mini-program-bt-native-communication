@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 
 function handleClick() {
-  window.iOS.discovery();
+  window.Android.discovery();
 }
 
 function App() {
